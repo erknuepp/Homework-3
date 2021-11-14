@@ -8,27 +8,23 @@ app.set('view engine', 'ejs');
 
 // index page
 var hero_results = []
-app.get('/', function (req, res) {
-  
-  let hero_name = '';
-  if(req.query['hero'] === ""){
-    hero_name = 'Batman';
-  }else{
-    hero_name = req.query['hero'];
-  }
-  console.log('Searching for ' + hero_name);
-  const url = 'https://www.superheroapi.com/api.php/10159715364964485/search/' + hero_name;
-  axios.get(url)
-    .then(response => {      
-      hero_results = response.data.results
-    })
-    .catch(error => {
-      console.log('Axios API Call Error: ' + error);
-    });
+app.get('/', async function (req, res) {
 
-  res.render('pages/index', {
-    hero_results: hero_results,
-  });
+    let hero_name = '';
+    if (req.query['hero'] === "") {
+        hero_name = 'Batman';
+    } else {
+        hero_name = req.query['hero'];
+    }
+    console.log('Searching for ' + hero_name);
+    const url = 'https://www.superheroapi.com/api.php/10159715364964485/search/' + hero_name;
+    const result = await axios.get(url);
+    console.log(result);
+    hero_results = result.data['results'];
+    
+    res.render('pages/index', {
+        hero_results: hero_results,
+    });
 });
 
 app.listen(8080);
