@@ -13,7 +13,7 @@
         <div class="jumbotron">
             <h1>Welcome to the Super Hero Search Engine</h1>
             
-            <form action="" method="get">
+            <form action="?hero=" method="get">
                 <label for="hero">Hero:</label>
                 <input type="text" id="hero" name="hero" value="" ><br><br>
                 <input type="submit" value="Submit">
@@ -24,7 +24,7 @@
                         <strong><%= hr.biography['full-name'] %></strong>
                         <img src='<%= hr.image['url'] %>' width="250"/>
                     </li>
-                <% }); %>
+                <% }) ?? ""; %>
             </ul>
         </div>
     </main>

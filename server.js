@@ -9,17 +9,17 @@ app.set('view engine', 'ejs');
 // index page
 var hero_results = []
 app.get('/', function (req, res) {
-  console.log('Searching for' + req.query['hero']);
+  
   let hero_name = '';
-  if(req.query['hero']){
-    hero_name = req.query['hero'];
-  }else{
+  if(req.query['hero'] === ""){
     hero_name = 'Batman';
+  }else{
+    hero_name = req.query['hero'];
   }
+  console.log('Searching for ' + hero_name);
   const url = 'https://www.superheroapi.com/api.php/10159715364964485/search/' + hero_name;
   axios.get(url)
-    .then(response => {
-      
+    .then(response => {      
       hero_results = response.data.results
     })
     .catch(error => {
