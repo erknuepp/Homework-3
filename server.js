@@ -12,15 +12,13 @@ app.get('/', async function (req, res) {
 
     let hero_name = '';
     if (req.query['hero'] === "") {
-        hero_name = 'Batman';
+        hero_name = '';
     } else {
         hero_name = req.query['hero'];
     }
     console.log('Searching for ' + hero_name);
     const url = 'https://www.superheroapi.com/api.php/10159715364964485/search/' + hero_name;
-    const result = await axios.get(url);
-    console.log(result);
-    hero_results = result.data['results'];
+    hero_results = (await axios.get(url)).data['results'];
     
     res.render('pages/index', {
         hero_results: hero_results,

@@ -1,37 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <%- include('../partials/head'); %>
 </head>
-<body class="container">
 
+<body class="container">
     <header>
         <%- include('../partials/header'); %>
     </header>
-
     <main>
         <div class="jumbotron">
             <h1>Welcome to the Super Hero Search Engine</h1>
-            
             <form method="GET">
                 <label for="hero">Hero:</label>
-                <input type="text" id="hero" name="hero" value="" ><br><br>
+                <input type="text" id="hero" name="hero" placeholder="Search heros"><br><br>
                 <input type="submit" value="Submit">
             </form>
             <ul>
                 <% try{ hero_results.forEach(function(hr) { %>
                     <li>
-                        <strong><%= hr.biography['full-name'] %></strong>
-                        <img src='<%= hr.image['url'] %>' width="250"/>
+                        <strong>
+                            <%= hr.biography["full-name"] %>
+                        </strong>
+                        <img src='<%= hr.image["url"] %>' width="250" />
                     </li>
-                <% }) ?? ""; } catch(error){console.log(error)}%>
+                    <% }) ?? "" ; } catch(error){console.log(error)}%>
             </ul>
         </div>
     </main>
-
     <footer>
         <%- include('../partials/footer'); %>
     </footer>
-
 </body>
+
 </html>
