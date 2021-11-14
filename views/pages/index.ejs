@@ -13,18 +13,18 @@
         <div class="jumbotron">
             <h1>Welcome to the Super Hero Search Engine</h1>
             
-            <form action="?hero=" method="get">
+            <form action="?hero=" method="GET">
                 <label for="hero">Hero:</label>
                 <input type="text" id="hero" name="hero" value="" ><br><br>
                 <input type="submit" value="Submit">
             </form>
             <ul>
-                <% hero_results.forEach(function(hr) { %>
+                <% try{ hero_results.forEach(function(hr) { %>
                     <li>
                         <strong><%= hr.biography['full-name'] %></strong>
                         <img src='<%= hr.image['url'] %>' width="250"/>
                     </li>
-                <% }) ?? ""; %>
+                <% }) ?? ""; } catch(error){console.log(error)}%>
             </ul>
         </div>
     </main>
