@@ -1,32 +1,35 @@
 // load the things we need
+var axios = require('axios').default;
 var express = require('express');
 var app = express();
 
 // set the view engine to ejs
 app.set('view engine', 'ejs');
 
-// use res.render to load up an ejs view file
-
-// index page 
-app.get('/', function(req, res) {
-    var mascots = [
-        { name: 'Tammy', organization: "DigitalOcean", birth_year: 2012},
-        { name: 'Tuxedo', organization: "Linux", birth_year: 1996},
-        { name: 'Moby Dock', organization: "Docker", birth_year: 2013}
-    ];
-    //mascots = //call the api here
-    //var tagline = "No programming concept is complete without a cute animal mascot.";
-
-    res.render('pages/index', {
-        mascots: mascots,
-        tagline: tagline
+// index page
+var hero_results = []
+app.get('/', function (req, res) {
+  console.log('Searching for' + req.query['hero']);
+  let hero_name = '';
+  if(req.query['hero']){
+    hero_name = req.query['hero'];
+  }else{
+    hero_name = 'Batman';
+  }
+  const url = 'https://www.superheroapi.com/api.php/10159715364964485/search/' + hero_name;
+  axios.get(url)
+    .then(response => {
+      
+      hero_results = response.data.results
+    })
+    .catch(error => {
+      console.log('Axios API Call Error: ' + error);
     });
-});
 
-// about page
-// app.get('/about', function(req, res) {
-//     res.render('pages/about');
-// });
+  res.render('pages/index', {
+    hero_results: hero_results,
+  });
+});
 
 app.listen(8080);
 console.log('8080 is the magik port');

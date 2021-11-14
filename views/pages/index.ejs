@@ -11,13 +11,18 @@
 
     <main>
         <div class="jumbotron">
-            <h1>Welcome to the Super Hero Search Engine </h1>
-            <p><%= tagline %></p>
+            <h1>Welcome to the Super Hero Search Engine</h1>
+            
+            <form action="" method="get">
+                <label for="hero">Hero:</label>
+                <input type="text" id="hero" name="hero" value="" ><br><br>
+                <input type="submit" value="Submit">
+            </form>
             <ul>
-                <% mascots.forEach(function(mascot) { %>
+                <% hero_results.forEach(function(hr) { %>
                     <li>
-                        <strong><%= mascot.name %></strong>
-                        representing <%= mascot.organization %>, born <%= mascot.birth_year %>
+                        <strong><%= hr.biography['full-name'] %></strong>
+                        <img src='<%= hr.image['url'] %>' width="250"/>
                     </li>
                 <% }); %>
             </ul>
