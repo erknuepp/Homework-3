@@ -13,11 +13,17 @@
         <div class="jumbotron">
             <h1>Welcome to SongSearch!</h1>
             <br>
-            <form style="display:flex; flex-direction:row" method="GET">
-                <label for="artist"><strong>Artist:</strong></label>
-                <input type="text" id="artist" name="artist" placeholder="Search artists"><br><br>
-                <input type="submit" value="Submit">
-            </form>
+            <div style="display:flex; flex-direction:column">
+                <form style="display:flex; flex-direction:row" method="GET">
+                    <label for="artist"><strong>Artist:</strong></label>
+                    <input type="text" id="artist" name="artist" placeholder="Search artists"><br><br>
+                    <input type="submit" value="Submit">
+                </form>
+                <div style="display:flex; flex-direction:column">Only 
+                    <%= total_cost.toLocaleString('en-US', { style: 'currency' , currency: 'USD' ,
+                        maximumFractionDigits: 2 }); %> for the top 5 tracks!
+                </div>
+            </div>
             <ul>
                 <% try{ artist_results.forEach(function(artist) { %>
                     <li style="display:flex; flex-direction:row">
@@ -32,13 +38,11 @@
                                 <%= artist["trackName"]; %>
                             </span>
                             <span>
-                                <%= (artist["trackPrice"]).toLocaleString('en-US', {
-                                    style: 'currency',
-                                    currency: 'USD',
-                                  }); %>
+                                <%= (artist["trackPrice"]).toLocaleString('en-US', { style: 'currency' , currency: 'USD'
+                                    , maximumFractionDigits: 2 }); %>
                             </span>
                         </div>
-                        
+
                     </li>
                     <% }) ?? "" ; } catch(error){console.log(error)}%>
             </ul>
