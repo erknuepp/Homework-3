@@ -21,10 +21,23 @@
             <ul>
                 <% try{ artist_results.forEach(function(artist) { %>
                     <li>
-                        <strong>
-                            <%= artist["artistName"] %>
-                        </strong>
-                        <img src='<%= artist["artworkUrl100"] %>' width="250" />
+                        <% if (artist["wrapperType"]=='audiobook') { %>
+                            <strong>
+                                <%= artist["artistName"] %>
+                            </strong>
+                            <span><%= artist["collectionName"] %></span>
+                            <span><%= artist["collectionPrice"] %></span>
+                            <img src='<%= artist["artworkUrl100"] %>' width="250" />
+                            
+                        
+                        <% } else if (artist["wrapperType"]=='track') { %>
+                            <strong>
+                                <%= artist["artistName"] %>
+                            </strong>
+                            <span><%= artist["trackName"] %></span>
+                            <span><%= artist["trackPrice"] %></span>
+                            <img src='<%= artist["artworkUrl100"] %>' width="250" />
+                        <% } %>
                     </li>
                     <% }) ?? "" ; } catch(error){console.log(error)}%>
             </ul>

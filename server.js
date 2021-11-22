@@ -7,21 +7,21 @@ var app = express();
 app.set('view engine', 'ejs');
 
 // index page
-var artist_results = []
+var artist_results = [];
+
 app.get('/', async function (req, res) {
     const itunesSearchUri = 'https://itunes.apple.com/search?term=%22';
-    let artist_name = '';
+    let search_term = '';
     if (req.query['artist'] === "") {
-        artist_name = '';
+        search_term = '';
     } else {
-        artist_name = req.query['artist'];
+        search_term = req.query['artist'];
     }
-    console.log('Searching for ' + artist_name);
-    const url = itunesSearchUri + artist_name + '%22';
+    console.log('Searching for ' + search_term);
+    const url = itunesSearchUri + search_term + '%22&limit=5';
     artist_results = (await axios.get(url)).data['results'];
-    console.log(JSON.stringify(artist_results))
     res.render('pages/index', {
-        artist_results: artist_results,
+        artist_results: artist_results
     });
 });
 
