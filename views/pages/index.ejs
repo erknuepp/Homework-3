@@ -13,31 +13,32 @@
         <div class="jumbotron">
             <h1>Welcome to SongSearch!</h1>
             <br>
-            <form method="GET">
+            <form style="display:flex; flex-direction:row" method="GET">
                 <label for="artist"><strong>Artist:</strong></label>
                 <input type="text" id="artist" name="artist" placeholder="Search artists"><br><br>
                 <input type="submit" value="Submit">
             </form>
             <ul>
                 <% try{ artist_results.forEach(function(artist) { %>
-                    <li>
-                        <% if (artist["wrapperType"]=='audiobook') { %>
+                    <li style="display:flex; flex-direction:row">
+                        <div style="padding-right: 10rem;">
+                            <img src='<%= artist["artworkUrl100"]; %>' />
+                        </div>
+                        <div style="display:flex; flex-direction:column;">
                             <strong>
-                                <%= artist["artistName"] %>
+                                <%= artist["artistName"]; %>
                             </strong>
-                            <span><%= artist["collectionName"] %></span>
-                            <span><%= artist["collectionPrice"] %></span>
-                            <img src='<%= artist["artworkUrl100"] %>' width="250" />
-                            
+                            <span>
+                                <%= artist["trackName"]; %>
+                            </span>
+                            <span>
+                                <%= (artist["trackPrice"]).toLocaleString('en-US', {
+                                    style: 'currency',
+                                    currency: 'USD',
+                                  }); %>
+                            </span>
+                        </div>
                         
-                        <% } else if (artist["wrapperType"]=='track') { %>
-                            <strong>
-                                <%= artist["artistName"] %>
-                            </strong>
-                            <span><%= artist["trackName"] %></span>
-                            <span><%= artist["trackPrice"] %></span>
-                            <img src='<%= artist["artworkUrl100"] %>' width="250" />
-                        <% } %>
                     </li>
                     <% }) ?? "" ; } catch(error){console.log(error)}%>
             </ul>
