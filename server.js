@@ -7,21 +7,21 @@ var app = express();
 app.set('view engine', 'ejs');
 
 // index page
-var hero_results = []
+var artist_results = []
 app.get('/', async function (req, res) {
-
-    let hero_name = '';
-    if (req.query['hero'] === "") {
-        hero_name = '';
+    const itunesSearchUri = 'https://itunes.apple.com/search?term=%22';
+    let artist_name = '';
+    if (req.query['artist'] === "") {
+        artist_name = '';
     } else {
-        hero_name = req.query['hero'];
+        artist_name = req.query['artist'];
     }
-    console.log('Searching for ' + hero_name);
-    const url = 'https://www.superheroapi.com/api.php/10159715364964485/search/' + hero_name;
-    hero_results = (await axios.get(url)).data['results'];
-    
+    console.log('Searching for ' + artist_name);
+    const url = itunesSearchUri + artist_name + '%22';
+    artist_results = (await axios.get(url)).data['results'];
+    console.log(JSON.stringify(artist_results))
     res.render('pages/index', {
-        hero_results: hero_results,
+        artist_results: artist_results,
     });
 });
 

@@ -11,19 +11,20 @@
     </header>
     <main>
         <div class="jumbotron">
-            <h1>Welcome to the Super Hero Search Engine</h1>
+            <h1>Welcome to SongSearch!</h1>
+            <br>
             <form method="GET">
-                <label for="hero">Hero:</label>
-                <input type="text" id="hero" name="hero" placeholder="Search heros"><br><br>
+                <label for="artist"><strong>Artist:</strong></label>
+                <input type="text" id="artist" name="artist" placeholder="Search artists"><br><br>
                 <input type="submit" value="Submit">
             </form>
             <ul>
-                <% try{ hero_results.forEach(function(hr) { %>
+                <% try{ artist_results.forEach(function(artist) { %>
                     <li>
                         <strong>
-                            <%= hr.biography["full-name"] %>
+                            <%= artist["artistName"] %>
                         </strong>
-                        <img src='<%= hr.image["url"] %>' width="250" />
+                        <img src='<%= artist["artworkUrl100"] %>' width="250" />
                     </li>
                     <% }) ?? "" ; } catch(error){console.log(error)}%>
             </ul>
