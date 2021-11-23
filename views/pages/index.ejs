@@ -43,7 +43,8 @@
                         <div class="d-flex flex-column">
                             <span>
                                 <strong>
-                                    <%= artist["artistName"]; %>
+                                    <a href="#" data-mdb-toggle="tooltip" title=<%=(artist["trackPrice"]).toLocaleString('en-US', { style: 'currency' , currency: 'USD'
+                                    , maximumFractionDigits: 2 });%>><%= artist["artistName"]; %></a>
                                 </strong>
                             </span>
                             <span>
