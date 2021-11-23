@@ -5,6 +5,7 @@ var app = express();
 
 // set the view engine to ejs
 app.set('view engine', 'ejs');
+app.use('/favicon.ico', express.static('img/favicon.ico'))
 
 // index page
 var artist_results = [];
