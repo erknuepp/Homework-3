@@ -10,30 +10,42 @@
         <%- include('../partials/header'); %>
     </header>
     <main>
-        <div class="jumbotron">
-            <h1>Welcome to SongSearch!</h1>
-            <br>
-            <div style="display:flex; flex-direction:column">
-                <form style="display:flex; flex-direction:row" method="GET">
-                    <label for="artist"><strong>Artist:</strong></label>
-                    <input type="text" id="artist" name="artist" placeholder="Search artists"><br><br>
-                    <input type="submit" value="Submit">
+        <div>
+            <h1 class="text-center p-5">Welcome to SongSearch!</h1>
+            <hr class="my-4" />
+            <div class="input-group">
+                <form class="form-outline d-flex" method="GET">
+                    <input class="form-control" type="text" id="artist" name="artist">
+                    <label class="form-label" for="artist">Search artists</label>
+                    <button value="submit" type="submit" class="btn btn-primary">
+                        <i class="fas fa-search"></i>
+                    </button>
                 </form>
-                <div style="display:flex; flex-direction:column">Only 
-                    <%= total_cost.toLocaleString('en-US', { style: 'currency' , currency: 'USD' ,
-                        maximumFractionDigits: 2 }); %> for the top 5 tracks!
-                </div>
             </div>
+            <hr class="mb-4" />
             <ul>
+                <h4>Only
+                    <%= ((total_cost * 1.15) + 1)
+                        .toLocaleString(
+                            'en-US', 
+                            { style: 'currency' , 
+                            currency: 'USD' ,
+                            maximumFractionDigits: 2 }); 
+                    %> for the top 5 tracks!
+                </h4>
+                <div><i>(Includes taxes and processing fee)</i></div>
                 <% try{ artist_results.forEach(function(artist) { %>
-                    <li style="display:flex; flex-direction:row">
+                    <hr />
+                    <li class="d-flex">
                         <div style="padding-right: 10rem;">
                             <img src='<%= artist["artworkUrl100"]; %>' />
                         </div>
-                        <div style="display:flex; flex-direction:column;">
-                            <strong>
-                                <%= artist["artistName"]; %>
-                            </strong>
+                        <div class="d-flex flex-column">
+                            <span>
+                                <strong>
+                                    <%= artist["artistName"]; %>
+                                </strong>
+                            </span>
                             <span>
                                 <%= artist["trackName"]; %>
                             </span>
