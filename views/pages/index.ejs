@@ -25,13 +25,8 @@
             <hr class="mb-4" />
             <ul>
                 <h4>Only
-                    <%= ((total_cost * 1.15) + 1)
-                        .toLocaleString(
-                            'en-US', 
-                            { style: 'currency' , 
-                            currency: 'USD' ,
-                            maximumFractionDigits: 2 }); 
-                    %> for the top 5 tracks!
+                    <%= ((total_cost * 1.15) + 1) .toLocaleString( 'en-US' , { style: 'currency' , currency: 'USD' ,
+                        maximumFractionDigits: 2 }); %> for the top 5 tracks!
                 </h4>
                 <div><i>(Includes taxes and processing fee)</i></div>
                 <% try{ artist_results.forEach(function(artist) { %>
@@ -42,9 +37,10 @@
                         </div>
                         <div class="d-flex flex-column">
                             <span>
-                                <strong>
-                                    <a href="#" data-mdb-toggle="tooltip" title=<%=(artist["trackPrice"]).toLocaleString('en-US', { style: 'currency' , currency: 'USD'
-                                    , maximumFractionDigits: 2 });%>><%= artist["artistName"]; %></a>
+                                <strong data-mdb-toggle="tooltip"
+                                    title=<%=(artist["trackPrice"]).toLocaleString('en-US', { style: 'currency' ,
+                                    currency: 'USD' , maximumFractionDigits: 2 });%>>
+                                        <%= artist["artistName"]; %>
                                 </strong>
                             </span>
                             <span>
