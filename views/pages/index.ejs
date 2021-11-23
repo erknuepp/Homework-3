@@ -11,7 +11,7 @@
     </header>
     <main>
         <div>
-            <h1 class="text-center p-5">Welcome to SongSearch!</h1>
+            <h1 class="text-center p-5">Welcome to One.Tunes!</h1>
             <hr class="my-4" />
             <div class="input-group">
                 <form class="form-outline d-flex" method="GET">
@@ -24,11 +24,7 @@
             </div>
             <hr class="mb-4" />
             <ul>
-                <h4>Only
-                    <%= ((total_cost * 1.15) + 1) .toLocaleString( 'en-US' , { style: 'currency' , currency: 'USD' ,
-                        maximumFractionDigits: 2 }); %> for the top 5 tracks!
-                </h4>
-                <div><i>(Includes taxes and processing fee)</i></div>
+                
                 <% try{ artist_results.forEach(function(artist) { %>
                     <hr />
                     <li class="d-flex">
@@ -45,10 +41,6 @@
                             </span>
                             <span>
                                 <%= artist["trackName"]; %>
-                            </span>
-                            <span>
-                                <%= (artist["trackPrice"]).toLocaleString('en-US', { style: 'currency' , currency: 'USD'
-                                    , maximumFractionDigits: 2 }); %>
                             </span>
                         </div>
 
